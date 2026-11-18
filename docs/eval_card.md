@@ -31,6 +31,7 @@ Bộ `6101bdcf2750` thêm 14 claim adversarial, tổng 28 item × 5 seed, dùng 
 - Slice tiền yêu cầu ≥ 0.95 và slice adversarial ≥ 0.90. Slice denial ≥ 0.90. Cả ba chặn khi CI ghép cặp nằm hoàn toàn dưới 0. Slice adversarial bao phủ claim theo cơ chế trong `fm_map.yaml`. Baseline 0.9714 và slice regression 0.9143 vẫn đạt.
 - A/A đổi sang seed 66, 77, 88, 99, 110 cho Δ +0.0000 trên tất cả metric. Sàn pass^5 0.80 nằm dưới 0.8929 một khoảng 0.0929, đủ để giữ baseline và loại flaky 0.5714. Hai bộ seed đều có đúng một seed chia hết cho 5. LLM thật có nhiễu từ sampling và hệ thống phục vụ, nên cần nhiều lượt A/A để ước lượng dải nhiễu trước khi đặt lại sàn.
 - Mutation score 3/3, 0 báo nhầm. Bốn trap công khai đều bị chặn. Integrity kiểm tra thêm cặp item/seed trùng, grader lỗi trên report xanh và nhãn slice bị đổi.
+- Gate đọc report nên một report bị sửa đồng thời ở điểm từng trial và số tổng hợp vẫn có thể nhất quán nội bộ. CI giảm rủi ro này bằng cách sinh lại report từ code trên PR. Bộ trap ẩn của giảng viên cần được dùng để xác nhận kết quả chấm Expert.
 - Chỉ có 5 seed, lỗi xuất hiện khi seed chia hết cho 3 dễ bị bỏ sót nếu bộ seed không phủ điều kiện kích hoạt. Với 5 lượt độc lập và xác suất lỗi 1/3, xác suất không gặp lỗi là (2/3)^5 ≈ 13.2% trên một item. Các seed cố định còn có thể tương quan giữa item.
 
 ## Phạm vi và vận hành

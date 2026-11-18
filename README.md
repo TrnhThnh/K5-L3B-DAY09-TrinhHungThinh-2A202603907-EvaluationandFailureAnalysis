@@ -134,9 +134,9 @@ Lưu ý: một bug chỉ xuất hiện ở 1/3 seed (`rare`) **không** phát hi
 
 ## Bản đồ file
 ```
-src/lab9/evalset.py   eval set v1 + provenance + check        (TODO M1: failure_modes)
-src/lab9/graders.py   pydantic-evals Evaluators               (TODO M3: 2 grader)
-src/lab9/stats.py     confusion, P/R, kappa, RG, bootstrap    (TODO M2, M4)
+src/lab9/evalset.py   eval set v1/v2, provenance, failure_modes và kiểm tra bộ dữ liệu
+src/lab9/graders.py   pydantic-evals Evaluators cho approval, ledger, reply và proposal
+src/lab9/stats.py     confusion, P/R, kappa, Rogan–Gladen, paired bootstrap, pass@k và pass^k
 src/lab9/trace_case.py trace → bước sai đầu tiên cho 1 claim@seed (docs/trace_case.md)
 src/lab9/judge.py     calibrate judge từ CSV (replay)
 src/lab9/eval.py      chạy 1 shape → reports/eval_<shape>.json có run_id
@@ -144,7 +144,7 @@ src/lab9/gate.py      PR vs baseline theo metric_spec → exit 0/1
 src/lab9/variants.py  fixed / seeded_regression (+ honest_refactor, slice_, flaky_regression cho v2)
 src/lab9/mutation.py  scorecard: variant công khai qua gate của bạn; --aa = nhiễu A/A   (M5–M7)
 src/lab9/traps.py     sinh report đã bị làm đẹp để thử integrity_check                  (M7)
-src/config/metric_spec_v2.yaml, fm_map.yaml, data/eval/adversarial_v2.json             (TODO M5, M6)
+src/config/metric_spec_v2.yaml, fm_map.yaml, data/eval/adversarial_v2.json             (M5, M6)
 src/config/metric_spec.yaml   ngưỡng (ratchet: cùng eval-set version chỉ được chặt hơn)
 ```
 Quy tắc: không sửa file `lab8/`; không sửa tay `reports/`; không đặt nhãn inline trong item.
