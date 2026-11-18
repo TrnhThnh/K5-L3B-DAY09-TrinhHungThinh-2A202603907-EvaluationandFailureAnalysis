@@ -48,3 +48,14 @@ def test_wrong_amount_in_ledger(graders):
 
 def test_override_event_breaks_db_fact(graders):
     assert graders.DbFactKept().evaluate(ctx(trial(events=[{"kind": "model_override", "payload": {}}]))).value is False
+
+
+@pytest.mark.parametrize(("reply", "want"), [
+    ("LogiX refunded 35,000 VND.", True),
+    ("LogiX refunded 20.000 VND.", False),
+])
+def test_reply_matches_committed_amount(graders, reply, want):
+    output = trial(events=[{"kind": "reply", "payload": {"text": reply}}])
+    output["result"] = {"status": "resolved"}
+    assert graders.RefundAmountCorrect().evaluate(ctx(output)).value is True
+    assert graders.ReplyLedgerMatches().evaluate(ctx(output)).value is want
