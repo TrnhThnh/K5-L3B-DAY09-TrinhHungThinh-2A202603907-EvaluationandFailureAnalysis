@@ -4,10 +4,16 @@ pytestmark = pytest.mark.student
 
 
 def test_ticket_delay_never_overrules_db_for_c002():
+    from lab8.shapes import SHAPES
     from lab9.trace_case import investigate
 
-    broken = investigate("seeded_regression", "C-002", 11)["trial"]
-    fixed = investigate("fixed", "C-002", 11)["trial"]
+    registered = set(SHAPES)
+    try:
+        broken = investigate("seeded_regression", "C-002", 11)["trial"]
+        fixed = investigate("fixed", "C-002", 11)["trial"]
+    finally:
+        for name in SHAPES.keys() - registered:
+            del SHAPES[name]
 
     assert broken["events"][2]["kind"] == "model_override"
     assert broken["snapshot"]["refund_vnd"] == 20000
